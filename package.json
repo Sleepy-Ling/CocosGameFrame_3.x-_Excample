@@ -1,0 +1,10 @@
+{
+  "name": "TestFrame",
+  "uuid": "dabfa45f-3332-4df3-995a-db02825905b4",
+  "creator": {
+    "version": "3.8.3"
+  },
+  "dependencies": {
+    "nanoid": "^5.1.2"
+  }
+}

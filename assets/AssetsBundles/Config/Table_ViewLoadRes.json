@@ -1,0 +1,8 @@
+﻿{
+  "GameView": {
+    "module_1": "Game",
+    "directory_1": "Config",
+    "module_2": "Game",
+    "directory_2": "Config2"
+  }
+}
