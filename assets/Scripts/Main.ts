@@ -1,4 +1,4 @@
-import { _decorator, Camera, Component, JsonAsset, log, Node } from 'cc';
+import { _decorator, Camera, Component, DynamicAtlasManager, JsonAsset, log, Node, Sprite, SpriteFrame, v3 } from 'cc';
 import { GM } from '../Frame/Core/Global/GM';
 import { Enum_AssetBundle, Enum_EventType, Enum_Layer, UIName } from '../Frame/Def/EnumDef';
 import { Enum_UI } from './GameEnum';
@@ -14,6 +14,16 @@ export class Main extends Component {
     uiCamera: Camera;
     @property(Node)
     audioSourceRoot: Node;
+
+    @property(SpriteFrame)
+    coin_1: SpriteFrame;
+    @property(SpriteFrame)
+    coin_2: SpriteFrame;
+
+    public onLoad(): void {
+        //强制禁用动态合图(目前在小游戏和原生平台上默认会禁用动态合图)
+        DynamicAtlasManager.instance.enabled = false;
+    }
 
     start() {
         let now = Date.now();
@@ -48,24 +58,36 @@ export class Main extends Component {
 
 
             //加载分包指定目录
-            ResourcesManager.LoadDirInBundle(Enum_AssetBundle.Common, "Config").then(() => {
-                //获取分包指定目录中的配置
-                let jsonData = ResourcesManager.getAssetRes<JsonAsset>(Enum_AssetBundle.Common, 'Config/Table_Character').json;
-                console.log("jsonData", jsonData);
+            // ResourcesManager.LoadDirInBundle(Enum_AssetBundle.Common, "Config").then(() => {
+            //     //获取分包指定目录中的配置
+            //     let jsonData = ResourcesManager.getAssetRes<JsonAsset>(Enum_AssetBundle.Common, 'Config/Table_Character').json;
+            //     console.log("jsonData", jsonData);
 
-                //释放分包全部资源
-                let isReleaseSucc: boolean = ResourcesManager.ReleaseAllAssetsInBundle(Enum_AssetBundle.Common);
-                console.log("isReleaseSucc", isReleaseSucc);
+            //     //释放分包全部资源
+            //     let isReleaseSucc: boolean = ResourcesManager.ReleaseAllAssetsInBundle(Enum_AssetBundle.Common);
+            //     console.log("isReleaseSucc", isReleaseSucc);
 
-                //释放分包指定目录全部资源
-                isReleaseSucc = ResourcesManager.ReleaseAssetInDir(Enum_AssetBundle.Common, "Config");
-                console.log("isReleaseSucc", isReleaseSucc);
+            //     //释放分包指定目录全部资源
+            //     isReleaseSucc = ResourcesManager.ReleaseAssetInDir(Enum_AssetBundle.Common, "Config");
+            //     console.log("isReleaseSucc", isReleaseSucc);
 
-                //获取分包指定目录中的配置 会报错，因为已经释放了
-                jsonData = ResourcesManager.getAssetRes<JsonAsset>(Enum_AssetBundle.Common, 'Config/Table_Character').json;
-                console.log("jsonData", jsonData);
+            //     //获取分包指定目录中的配置 会报错，因为已经释放了
+            //     jsonData = ResourcesManager.getAssetRes<JsonAsset>(Enum_AssetBundle.Common, 'Config/Table_Character').json;
+            //     console.log("jsonData", jsonData);
 
-            });
+            // });
+
+            // setTimeout(() => {
+            //     let spr = new Node().addComponent(Sprite);
+            //     spr.spriteFrame = this.coin_1;
+            //     spr.node.setParent(this.node);
+
+            //     spr = new Node().addComponent(Sprite);
+            //     spr.spriteFrame = this.coin_2;
+            //     spr.node.setParent(this.node);
+            //     spr.node.setPosition(v3(0, 100));
+
+            // }, 2000);
         });
 
     }

@@ -184,7 +184,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 414.94505494505495,
+    "_orthoHeight": 407.4226804123711,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -588,6 +588,14 @@
     },
     "audioSourceRoot": {
       "__id__": 11
+    },
+    "coin_1": {
+      "__uuid__": "7b7387e5-157f-4e60-97a7-58c379f46c2d@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "coin_2": {
+      "__uuid__": "06a59242-346b-4d18-802a-a5d454d8add5@f9941",
+      "__expectedType__": "cc.SpriteFrame"
     },
     "_id": "f5d4M91IRGHK7TAuye3/7p"
   },

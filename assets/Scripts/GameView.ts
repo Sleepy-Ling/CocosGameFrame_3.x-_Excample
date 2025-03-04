@@ -1,6 +1,9 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, instantiate, Layout, Node, Sprite } from 'cc';
 import { ViewBase, ViewParamBase } from '../Frame/Core/View/ViewBase';
 import GameViewBase, { GameViewBaseInitParam, GameViewInf } from '../Frame/Core/View/GameViewBase';
+import { ResourcesManager } from '../Frame/Manager/ResourcesManager';
+import { Enum_AssetBundle } from '../Frame/Def/EnumDef';
+import { TEXTURE_DIR } from '../Frame/Def/ConstDef';
 const { ccclass, property } = _decorator;
 
 export class GameViewInitParam extends GameViewBaseInitParam {
@@ -8,9 +11,13 @@ export class GameViewInitParam extends GameViewBaseInitParam {
 }
 
 @ccclass('GameView')
-export class GameView extends GameViewBase {
+export class GameView<T extends GameViewInitParam> extends GameViewBase<T> {
+    @property(Sprite)
+    spr_icon: Sprite;
+    @property(Layout)
+    layout: Layout;
 
-    public async preLoadSrc(viewName: string, param: ViewParamBase): Promise<boolean> {
+    public async preLoadSrc(viewName: string, param: T): Promise<boolean> {
         await super.preLoadSrc(viewName, param);
 
         let p = new Promise<boolean>((resolve) => {//假设加载该界面资源时长需要3s
@@ -21,6 +28,30 @@ export class GameView extends GameViewBase {
 
         return p;
     }
+
+    public onViewOpen(param: T): void {
+        //纹理合批结果展示
+        // const sf = ResourcesManager.getSpriteFrameFromAtlas(Enum_AssetBundle.Game, "goldCoin1", TEXTURE_DIR, "coin");
+        // this.spr_icon.spriteFrame = sf;
+
+        // for (let i = 0; i < 9; i++) {
+        //     const sf = ResourcesManager.getSpriteFrameFromAtlas(Enum_AssetBundle.Game, `goldCoin${i + 1}`, TEXTURE_DIR, "coin");
+
+        //     let node = instantiate(this.spr_icon.node);
+        //     node.setParent(this.layout.node);
+        //     node.getComponent(Sprite).spriteFrame = sf;
+        // }
+        /////////////////////////////////////////////////
+
+        //资源释放
+        // setTimeout(() => {
+        //     //this.spr_icon.spriteFrame 引用到了分包资源。如果在释放资源后，依然保持引用则会报错
+        //     ResourcesManager.ReleaseAssetInDir(Enum_AssetBundle.Game, "Texture");
+        //     this.spr_icon.spriteFrame = null;
+        // }, 3000);
+
+    }
+
     protected onGameStart(info?: any): void {
 
     }
@@ -45,13 +76,7 @@ export class GameView extends GameViewBase {
     public getGameInf(): Readonly<GameViewInf> {
         return null;
     }
-    start() {
 
-    }
-
-    update(deltaTime: number) {
-
-    }
 }
 
 
