@@ -1,9 +1,6 @@
-import { _decorator, Component, instantiate, Layout, Node, Sprite } from 'cc';
-import { ViewBase, ViewParamBase } from '../Frame/Core/View/ViewBase';
-import GameViewBase, { GameViewBaseInitParam, GameViewInf } from '../Frame/Core/View/GameViewBase';
-import { ResourcesManager } from '../Frame/Manager/ResourcesManager';
-import { Enum_AssetBundle } from '../Frame/Def/EnumDef';
-import { TEXTURE_DIR } from '../Frame/Def/ConstDef';
+import { _decorator, Component, instantiate, Layout, log, Node, Sprite } from 'cc';
+import GameViewBase, { GameViewBaseInitParam, GameViewInf } from 'db://assets/Frame/Core/View/GameViewBase';
+ 
 const { ccclass, property } = _decorator;
 
 export class GameViewInitParam extends GameViewBaseInitParam {
@@ -23,7 +20,7 @@ export class GameView<T extends GameViewInitParam> extends GameViewBase<T> {
         let p = new Promise<boolean>((resolve) => {//假设加载该界面资源时长需要3s
             setTimeout(() => {
                 resolve(true);
-            }, 3000);
+            }, 100);
         })
 
         return p;

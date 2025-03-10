@@ -52,8 +52,10 @@ export class Main extends Component {
                 let transtionParam: ViewTranstionParam = {
                     loadingViewType: Enum_UI.TranstionLoadingView
                 }
-                GM.uiManager.OpenUI(Enum_UI.GameView, null, null, Enum_Layer.UI, transtionParam);
+                // GM.uiManager.OpenUI(Enum_UI.GameView, null, null, Enum_Layer.UI, transtionParam);
                 // GM.uiManager.OpenUI(Enum_UI.GameView2, null, null, Enum_Layer.UI);
+                
+                GM.uiManager.OpenUI(Enum_UI.LobbyView);
             });
 
 
