@@ -1,3 +1,4 @@
+/**界面名 */
 export enum Enum_UI {
     TestView = "TestView",
     GameView = "GameView",
@@ -9,6 +10,7 @@ export enum Enum_UI {
     TranstionLoadingView = "TranstionLoadingView",
 }
 
+/**分包名 */
 export enum Enum_Module {
     Game = "Game",
     Test = "Test",
